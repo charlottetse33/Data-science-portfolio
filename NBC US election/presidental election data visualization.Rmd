@@ -1,0 +1,137 @@
+---
+title: "Data wrangling & visualisation"
+author: "Charlotte Tse"
+output: html_document
+---
+```{r}
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library('tidyverse')
+library('rvest')
+library('RSelenium')
+library("maps")
+```
+
+The Democratic candidate, Joe Biden, flipped 5 states (Michigan, Wisconsin, Arizona, Pennsylvania, and Georgia) won by his incumbent counterpart, Donald Trump, in 2016, and won the election. So, it could be interesting to view how changes in county-level result contributed to the former vice president's triumph in the just-passed election. 
+
+Data from 2020 election was obtained through web scrapping. 
+https://github.com/charlottetse33/portfolio/blob/main/NBC%20US%20election/web%20scrapping.R
+
+Biden flipped 5 states that Trump won in 2016. They are Michigan, Wisconsin, Arizona, Pennsylvania, and Georgia. The following code creates a character vector for the names of the 5 states:
+
+```{r}
+flipped_states <- c('arizona', 'georgia', 'michigan', 'pennsylvania', 'wisconsin')
+```
+
+We're going to zoom in on *counties of these 5 states* to inspect changes in vote between the 2016 and 2020 elections.
+
+```{r}
+
+(county <- as_tibble(map_data("county")))
+(county_fips <- as_tibble(county.fips))
+county_fips <- county_fips %>% mutate(state_county = polyname, .keep = "unused")
+election_result_temp <- read_csv("https://raw.githubusercontent.com/charlottetse33/portfolio/main/NBC%20US%20election/USPresidential08-16.csv") %>% select(fips = fips_code, total_2016,dem_2016,gop_2016)  %>% mutate(fips = as.integer(fips))
+election_res_2016_inner.join <- election_result_temp %>% inner_join(county_fips, by = "fips") 
+election_res_2016 <- election_res_2016_inner.join[str_extract(election_res_2016_inner.join$state_county,"[a-z]+") %in% flipped_states,] %>% .[,2:5]
+
+election_res_2016
+```
+
+In the 5 flipped states, there are 4 counties whose names are inconsistent between `election_res_2020` and `election_res_2016`:
+
+In `election_res_2020`, their names are `"georgia,dekalb"`, `"michigan,st. clair"`, `"michigan,st. joseph"`, and `"wisconsin,st. croix"` (they come from NBC News webpages).
+ 
+while, in `election_res_2016`, they are `"georgia,de kalb"`, `"michigan,st clair"`, `"michigan,st joseph"`, and `"wisconsin,st croix"` (they come from `maps::county.fips`).
+
+Data frame that combines county-level results for the 5 states:
+
+```{r}
+# Provide your code to create election_res_1620
+# You are not allowed to use any for/while/repeat loop in this chunk 
+
+election_res_2020 <- read_csv("https://raw.githubusercontent.com/charlottetse33/portfolio/main/NBC%20US%20election/election_res_2020.csv")
+
+temp_2020 <- election_res_2020[str_extract(election_res_2020$state_county,"[a-z]+") %in% flipped_states,] %>% mutate(state_county = state_county, total_2020 = trump + biden +others, dem_2020 = trump, gop_2020 = biden, .keep = "none")
+
+temp_2020[temp_2020[,1] == "georgia,dekalb", 1] <- "georgia,de kalb"
+temp_2020[temp_2020[,1] == "michigan,st. clair", 1] <- "michigan,st clair"
+temp_2020[temp_2020[,1] == "michigan,st. joseph", 1] <- "michigan,st joseph"
+temp_2020[temp_2020[,1] == "michigan,st. croix", 1] <- "michigan,st croix"
+temp_2020[temp_2020[,1] == "wisconsin,st. croix", 1] <- "wisconsin,st croix"
+
+election_res_1620 <- inner_join(election_res_2016, temp_2020, by = "state_county") %>% select(state_county, total_2016, dem_2016, gop_2016, total_2020, dem_2020, gop_2020) %>% arrange(state_county)
+
+election_res_1620
+```
+
+Based on `election_res_1620`, create a data frame that summarizes the total numbers of votes received by both parties at the state level.
+
+```{r}
+# Provide your code to create election_res_1620_state
+# You are not allowed to use any for/while/repeat loop in this chunk 
+
+election_res_1620_state <- election_res_1620 %>% mutate(state = str_to_title(str_extract(election_res_1620$state_county,"[a-z]+"))) %>% group_by(state) %>% summarise(dem_2016 = sum(dem_2016), dem_2020 = sum(dem_2020), gop_2016 = sum(gop_2016), gop_2020 = sum(gop_2020)) %>% pivot_longer(., cols = dem_2016:gop_2020, names_to = "party_year", values_to = "vote") %>% mutate(party = str_extract(party_year,"[a-z]+"), year = str_extract(party_year, "[0-9]+"), .keep = "unused") %>% .[,c(1,3,4,2)]
+
+election_res_1620_state
+```
+
+With all necessary data ready, create 2 Choropleth maps for the 2016 and 2020 election results 
+
+```{r fig.width=15, fig.height=6.5, fig.align = "center"}
+# Provide your code to wrangle the data and create the plot
+# You are not allowed to use any for/while/repeat loop in this chunk 
+# Use inner_join if you want to join two data frames
+
+state <- as_tibble(map_data("state"))
+election_res_1620 <- election_res_1620 %>% mutate(result_2016 = (dem_2016 -gop_2016)/total_2016, result_2020 = (dem_2020 -gop_2020)/total_2020)
+county_temp <- county %>% filter(region %in% flipped_states) %>% unite(state_county, region, subregion, sep = ",")
+election_result_agg <- inner_join(election_res_1620, county_temp, by = "state_county") %>% select(state_county,result_2016, result_2020, long, lat, group, order) %>% pivot_longer(., cols = result_2016:result_2020, names_to = "year",names_prefix = "result_", values_to = "result")
+
+
+
+p <- ggplot(election_result_agg, aes(long, lat, group = group)) + geom_polygon(aes(fill = result)) + facet_grid(~ year) + geom_polygon(data = state, aes(long, lat, group = group), colour = "black", fill = "NA", size = 0.6)
+
+
+p + ggtitle("Flipped States: 2016 VS. 2020 Presidential Election \n") + theme_bw() +
+  scale_fill_gradient2(name=NULL, limits = c(-1, 1), 
+                       low = "#e41a1c", high = "#377eb8", 
+                       breaks = c(-1, 1), labels = c("Republican Won        ", "Democrat Won")) +
+  labs(x = NULL, y = NULL) +
+  theme(legend.position = "bottom",
+          strip.background = element_rect(fill="lightgray", size= 0.8),
+          plot.title = element_text(size = 20, face = "bold"),
+          strip.text.x = element_text(size = 16, face = "bold.italic"),
+          legend.text = element_text(size = 16, face = "bold"),
+          legend.spacing.x = unit(0.5, "line"),
+          legend.key.size = unit(0.9, "cm")) +  
+    guides(fill = guide_legend(title.position = "top", title.hjust = 0.5)) 
+
+```
+As you can see, only the 5 flipped states are colored. And colors represent differences in percentage of votes received by the 2 parties (dem vs. gop).
+
+
+```{r fig.width=15, fig.height=6.5, fig.align = "center"}
+
+h <- ggplot(election_res_1620_state, aes(x = state, y = vote, fill = party)) + geom_histogram(stat = "identity", position = "dodge", width = 0.5) + facet_grid(~ year) 
+
+
+h + ggtitle("Flipped States: 2016 VS. 2020 Presidential Election \n") + theme_bw() +
+  scale_y_continuous(breaks = c(0, 1000000, 2000000, 3000000), 
+                     labels = c("0", "1,000", "2,000", "3,000")) + 
+  scale_fill_manual(name=NULL, values = c("dem" = "#377eb8", "gop" = "#e41a1c"),
+                    labels = c("gop"= "Republican Party", "dem"="Democrat Party        " )) +
+  labs(x = NULL, y = "No. of votes\n(in thousands)") + 
+  theme(legend.position = "bottom",
+        strip.background = element_rect(fill="lightgray", size= 0.8),
+        plot.title = element_text(size = 20, face = "bold"),
+        strip.text.x = element_text(size = 16, face = "bold.italic"),
+        legend.text = element_text(size = 16, face = "bold"),
+        legend.spacing.x = unit(0.5, "line"),
+        legend.key.size = unit(0.9, "cm"),
+        axis.title.y = element_text(face="bold.italic", size=18),
+        axis.text.x = element_text(size = 14, face="italic"),
+        axis.text.y = element_text(size = 14, face="italic")
+  ) + guides(fill = guide_legend(title.position = "top", title.hjust = 0.5)) 
+
+```
