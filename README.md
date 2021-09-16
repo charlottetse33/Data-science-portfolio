@@ -7,7 +7,7 @@ Repository containing portfolio completed by me for academic, self learning, and
   * [US presidental election 2016 vs 2020](https://rpubs.com/ckltse/810034) : Exploratory data analysis on presidential election 
 
 * Statistics
-
+  * [Fitting ARIMA model to Time Series Data](https://rpubs.com/ckltse/810035) : R vignette on fitting ARIMA model to CO2 concentration data 
 
 * Web scrapping 
   * [NBC 2020 US presidental election result](https://github.com/charlottetse33/portfolio/blob/main/NBC%20US%20election/web%20scrapping.R) : Country-level presidential election results from NBC 
