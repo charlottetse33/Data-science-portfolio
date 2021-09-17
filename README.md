@@ -23,6 +23,6 @@ R files: https://rpubs.com/ckltse
   * [NBC 2020 US presidental election result](https://github.com/charlottetse33/portfolio/blob/main/NBC%20US%20election/web%20scrapping.R) : Country-level presidential election results from NBC 
   * [Amazon web scrapper](https://github.com/charlottetse33/portfolio/blob/main/Amazon%20web%20scrapping/Web_scrapper%20-%20Amazon%20reviews.py) : Amazon reviews 
 
- Tools: RSelenium, rvest, python beautiful soup
+  Tools: RSelenium, rvest, python beautiful soup
 
 
