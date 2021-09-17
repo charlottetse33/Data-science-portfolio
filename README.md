@@ -4,10 +4,10 @@ R files: https://rpubs.com/ckltse
 
 # Contents
 * Machine Learning 
-  * [IBM employee churn rate](): 
-  Data pre-processing: Handle class imbalance, isolation forest, levene test
-  Feature engineering: PCA, association rule, k-mean clustering, chi-square independence test
-  Model building : Random Forest Classifier, XGBoost, Logistics Regression, Neural Network, Gaussian Naive Bayes Classifier, Ensemble Learning 
+  * [IBM employee churn rate](): \
+  Data pre-processing: Handle class imbalance, isolation forest, levene test \
+  Feature engineering: PCA, association rule, k-mean clustering, chi-square independence test \
+  Model building : Random Forest Classifier, XGBoost, Logistics Regression, Neural Network, Gaussian Naive Bayes Classifier, Ensemble Learning \
   Hyperparameter tuning: Bayesian optimization 
   
 
