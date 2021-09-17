@@ -7,7 +7,7 @@ R files: https://rpubs.com/ckltse
 
 * Data Analysis and visualization
   * [US presidental election 2016 vs 2020](https://rpubs.com/ckltse/810034) : Exploratory data analysis on presidential election 
-  * [Dating mining of reviews data for businesses in the US](): Exploratory data anaysis + comparing Naive Bayes model & Logistics regression. 
+  * [Reviews data for businesses in the US](https://github.com/charlottetse33/portfolio/blob/main/US%20business%20reviews/Data_mining_review.ipynb): Exploratory data anaysis + comparing Naive Bayes model & Logistics regression. 
   * 
 * Statistics
   * [Fitting ARIMA model to Time Series Data](https://rpubs.com/ckltse/810035) : R vignette on fitting ARIMA model to CO2 concentration data 
