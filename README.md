@@ -1,5 +1,5 @@
 # Portfolio
-Repository containing portfolio completed by me for academic, self learning, and hobby purposes. \
+Repository containing projects completed by me for academic, self learning, and hobby purposes. \
 R files: https://rpubs.com/ckltse
 
 # Contents
