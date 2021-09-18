@@ -6,7 +6,7 @@ R files: https://rpubs.com/ckltse
 * Machine Learning 
   * [IBM employee churn rate](https://nbviewer.jupyter.org/github/charlottetse33/portfolio/blob/main/IBM_Classification.ipynb): Predict the attrition of employees in IBM using machine learning models, dataset retrived from Kaggle. \
   Data pre-processing: Handle class imbalance, isolation forest, levene test \
-  Feature engineering: PCA, association rule, k-mean clustering, chi-square independence test \
+  Feature engineering: Principal component analysis(PCA), association rule, k-mean clustering, chi-square independence test \
   Model building : Random Forest Classifier, XGBoost, Logistics Regression, Neural Network, Gaussian Naive Bayes Classifier, Ensemble Learning \
   Hyperparameter tuning: Bayesian optimization 
   
@@ -18,7 +18,7 @@ R files: https://rpubs.com/ckltse
 * Statistics
   * [Fitting ARIMA model to Time Series Data](https://rpubs.com/ckltse/810035) : R vignette on fitting ARIMA model to CO2 concentration data 
   * [Stock regression](https://rpubs.com/ckltse/810395): Illustration of CAPM, Fama-French models in LS and LAD regression on DIS stock
-  * [Telco Customer Churn](https://nbviewer.jupyter.org/github/charlottetse33/Data-science-portfolio/blob/main/Telco_Customer_Churn_.ipynb): Performed simple Exploratory data analysis, MCA, ANOVA, Point-biseral correlation test, Variable Inflation Factor
+  * [Telco Customer Churn](https://nbviewer.jupyter.org/github/charlottetse33/Data-science-portfolio/blob/main/Telco_Customer_Churn_.ipynb): Performed simple Exploratory data analysis, Multiple correspondence analysis(MCA), ANOVA, Point-biseral correlation test, Variable Inflation Factor
 
 * Web scrapping 
   * [NBC 2020 US presidental election result](https://github.com/charlottetse33/portfolio/blob/main/NBC%20US%20election/web%20scrapping.R) : Country-level presidential election results from NBC 
