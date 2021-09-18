@@ -18,6 +18,7 @@ R files: https://rpubs.com/ckltse
 * Statistics
   * [Fitting ARIMA model to Time Series Data](https://rpubs.com/ckltse/810035) : R vignette on fitting ARIMA model to CO2 concentration data 
   * [Stock regression](https://rpubs.com/ckltse/810395): Illustration of CAPM, Fama-French models in LS and LAD regression on DIS stock
+  * [Telco Customer Churn](https://nbviewer.jupyter.org/github/charlottetse33/Data-science-portfolio/blob/main/Telco_Customer_Churn_.ipynb): Performed simple Exploratory data analysis, MCA, ANOVA, point-biseral correlation test, variable inflation factor, and logistics regression 
 
 * Web scrapping 
   * [NBC 2020 US presidental election result](https://github.com/charlottetse33/portfolio/blob/main/NBC%20US%20election/web%20scrapping.R) : Country-level presidential election results from NBC 
