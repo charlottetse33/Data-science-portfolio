@@ -4,7 +4,7 @@ R files: https://rpubs.com/ckltse
 
 # Contents
 * Machine Learning 
-  * [IBM employee churn rate](https://github.com/charlottetse33/portfolio/blob/main/IBM_Classification.ipynb): Predict the attrition of employees in IBM using machine learning models, dataset retrived from Kaggle. \
+  * [IBM employee churn rate](https://nbviewer.jupyter.org/github/charlottetse33/portfolio/blob/main/IBM_Classification.ipynb): Predict the attrition of employees in IBM using machine learning models, dataset retrived from Kaggle. \
   Data pre-processing: Handle class imbalance, isolation forest, levene test \
   Feature engineering: PCA, association rule, k-mean clustering, chi-square independence test \
   Model building : Random Forest Classifier, XGBoost, Logistics Regression, Neural Network, Gaussian Naive Bayes Classifier, Ensemble Learning \
