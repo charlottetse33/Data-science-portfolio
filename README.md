@@ -1,4 +1,4 @@
-# Portfolio
+# Data Science Portfolio
 Repository containing projects completed by me for academic, self learning, and hobby purposes. \
 R files: https://rpubs.com/ckltse
 
