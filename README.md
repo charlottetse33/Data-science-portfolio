@@ -4,7 +4,7 @@ R files: https://rpubs.com/ckltse
 
 # Contents
 * Data Engineering
-  * :Analyse youtube data (madeup of CSVs and Jsons files) via Data Lakehouse with Snowflake
+  * [Data Lakehouse with Snowflake](https://github.com/charlottetse33/Data-science-portfolio/blob/main/Data%20Lakehouse%20with%20Snowflake.sql): Upload data onto Azure storage, ingest data into Data Warehouse, perform data transformation and analyse Youtube data
  
 
 * Machine Learning 
