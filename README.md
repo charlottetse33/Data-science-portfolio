@@ -1,7 +1,7 @@
 # Data Portfolio
 Repository containing projects completed by me for academic, self learning, and hobby purposes. \
+I am open to freelancing jobs related to data, including but not limited to web scrapping for data, data transformation, data design.
 You can contact me via [Linkedin](https://www.linkedin.com/in/ckltse/) or email - charlotte.tsekl@gmail.com
-R files: https://rpubs.com/ckltse
 
 # Contents
 * Data Engineering
@@ -31,4 +31,4 @@ R files: https://rpubs.com/ckltse
 
   Tools: RSelenium, rvest, python beautiful soup
 
-
+R files: https://rpubs.com/ckltse
