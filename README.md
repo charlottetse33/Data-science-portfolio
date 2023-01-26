@@ -1,5 +1,6 @@
 # Data Portfolio
 Repository containing projects completed by me for academic, self learning, and hobby purposes. \
+You can contact me via [Linkedin](https://www.linkedin.com/in/ckltse/) or email - charlotte.tsekl@gmail.com
 R files: https://rpubs.com/ckltse
 
 # Contents
