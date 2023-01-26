@@ -1,8 +1,12 @@
-# Data Science Portfolio
+# Data Portfolio
 Repository containing projects completed by me for academic, self learning, and hobby purposes. \
 R files: https://rpubs.com/ckltse
 
 # Contents
+* Data Engineering
+  * :Analyse youtube data (madeup of CSVs and Jsons files) via Data Lakehouse with Snowflake
+ 
+
 * Machine Learning 
   * [IBM employee churn rate](https://nbviewer.jupyter.org/github/charlottetse33/portfolio/blob/main/IBM_Classification.ipynb): Predict the attrition of employees in IBM using machine learning models, dataset retrived from Kaggle. \
   Data pre-processing: Handle class imbalance, isolation forest, levene test \
